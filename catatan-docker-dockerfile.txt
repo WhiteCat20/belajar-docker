@@ -1,0 +1,44 @@
+DockerFile
+- membuat docker image dilakukan dengan instruksi yang ada di dalam DockerFile
+- semua instruksi untuk menjalankan aplikasi kita
+- dieksekusi untuk membuat Docker Image
+- membuat image : docker build 
+- diberi "-t" untuk namanya, paling akhir adalah directory hasil buildnya
+	docker build -t faiz/app:1.0.0 folder-dockerfile
+	docker build -t faiz/app:1.0.0 -t faiz/app:latest folder-dockerfile
+
+DockerFile format
+- dengan nama Dockerfile, tidak ada extension
+- instuksi format / syntax
+# komentar
+INSTRUCTION arguments 
+INSTRUCTION: perintah yang digunakan dalam Dockerfile, menggunakan uppercase, case insensitive
+arguments: data argument/parameter untuk INSTRUCTION 
+
+FROM instruction
+- build stage dari image yang ditentukan (awal dari tahapan pembuatan image)
+- biasanya menggunakan image dari docker image lain yg sudah ada
+	FROM image:version
+	FROM alpine:3
+- contoh : 
+	docker build -t whitecat20/from from
+
+RUN instruction
+- instruksi untuk mengeksekusi perintah didalam image pada saat build stage
+- hasil perintah RUN akan di commit dalam perubahan image, dieksekusi saat build saja
+- ketika menjadi docker image tidak akan dijalankan
+- format instruksi : 
+	RUN command
+	RUN ["executable", "argument", ...]
+- contoh : 
+	RUN mkdir hello // membuat folder
+	RUN echo "Hello World" > "hello/world.txt" // print hw, masukan kedalam file tsb
+	RUN cat "hello/world.txt" // 
+	docker build -t whitecat20/run run
+- untuk menampilkan output detail dari Dockerfile, bisa menggunakan --progeress=plain
+- untuk build tanpa cache, bisa menggunakan --no-cache
+	docker build -t whitecat20/run run --progress=plain --no-cache
+
+
+
+
