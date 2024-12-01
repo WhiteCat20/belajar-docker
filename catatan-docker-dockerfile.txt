@@ -60,7 +60,17 @@ CMD instruction
 	docker container start command
 	docker container logs command
 	
-	
+LABEL instruction : 
+- menambahkan meta data pada docker image
+- format : 
+	LABEL key=value
+	LABEL key1=value1 key2=value2
+- contoh : 
+	LABEL author="Muhammad Faiz Rahmadani"
+	LABEL company="OMNI IT Consulting" website="whitecat20.github.io"
+	--
+	docker build -t whitecat20/label label
+	docker image inspect whitecat20/label
 	
 	
 	
