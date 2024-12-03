@@ -131,7 +131,28 @@ EXPOSE instruction :
 	-- 
 	docker build -t whitecat20/expose expose
 	docker image inspect whitecat20/expose // untuk cek apakah beneran di expose atau tidak
-	docker container create --name expose whitecat20/expose
+	docker container create --name expose --publish 8080:8080 whitecat20/expose
 	docker container start expose
 	docker container logs expose
+
+ENV instruction : 
+- instruksi agar image hasil build bisa menyimpan env
+- sifat dari ENV didalam Dockerfile adalah default, jadi bisa diganti lewat pembuatan container
+- format : 
+	ENV key=value
+	ENV key1=value1 key2=value2
+- contoh : 
+	FROM golang:1.18-alpine
+	ENV APP_PORT=8080
+	RUN mkdir app
+	COPY main.go app
+	EXPOSE ${APP_PORT}
+	CMD go run app/main.go
+	-- 
+	docker build -t whitecat20/env env
+	docker image inspect whitecat20/env // untuk cek apakah beneran di expose atau tidak
+	docker container create --name env --env APP_PORT=9090 --publish 9090:9090 whitecat20/env
+	docker container start env
+	docker container logs env
+
 	
