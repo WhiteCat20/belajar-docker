@@ -97,6 +97,22 @@ COPY instruction :
 	docker container start copy
 	docker container logs copy
 	
+Dockerignore file : 
+- ketika menjalankan ADD dan COPY, yang pertama kali dibaca oleh docker adalah file .dockerignore
+- bersifat seperti .gitignore
+- contoh : 
+	text/*.log
+	text/temp
+	--
+	FROM alpine:3
+	RUN mkdir hello
+	COPY text/* hello
+	CMD ls -l hello
+	--
+	docker build -t whitecat20/ignore ignore
+	docker container create --name ignore whitecat20/ignore
+	docker container start ignore
+	docker container logs ignore	
 
 
 
