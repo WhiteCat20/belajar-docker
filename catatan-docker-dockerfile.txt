@@ -114,5 +114,24 @@ Dockerignore file :
 	docker container start ignore
 	docker container logs ignore	
 
-
-
+EXPOSE instruction : 
+- instruksi agar container listen ke port (nomor dan protokol) tertentu
+- sebagai informasi saja, tidak mempublish port apapun
+- format : 
+	EXPOSE port // default menggunakan TCP
+	EXPOSE port/tcp
+	EXPOSE port/udp
+	
+- contoh : 
+	FROM golang:18-alpine
+	RUN mkdir app
+	COPY main.go app
+	EXPOSE 8080
+	CMD go run app/main.go
+	-- 
+	docker build -t whitecat20/expose expose
+	docker image inspect whitecat20/expose // untuk cek apakah beneran di expose atau tidak
+	docker container create --name expose whitecat20/expose
+	docker container start expose
+	docker container logs expose
+	
