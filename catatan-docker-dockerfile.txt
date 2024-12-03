@@ -72,7 +72,30 @@ LABEL instruction :
 	docker build -t whitecat20/label label
 	docker image inspect whitecat20/label
 	
+ADD instruction : 
+- menambahkan file ke dalam docker image
+- apabila terdeteksi file yang di add adalah file kompress, maka otomatis akan di ekstrak
+- bisa menambahkan beberapa file sekaligus dengan pattern di golang
+- format : 
+	add source destination
+- contoh : 
+	ADD helloworld.txt hello // tambahkan helloworld.txt ke folder hello
+	ADD *.txt hello // menambah semua file .txt ke folder hello
+	--
+	docker container create --name add whitecat20/add
+	docker container start add
+	docker container logs add
 	
+COPY instruction : 
+- sama seperti ADD, hanya saja ADD bisa mendownload source dr URL
+- copy tidak bisa, hanya memindah
+	COPY text/ hello // tambahkan helloworld.txt ke folder hello
+	COPY *.txt hello // menambah semua file .txt ke folder hello
+	-- 
+	docker build -t whitecat20/copy copy
+	docker container create --name copy whitecat20/copy
+	docker container start copy
+	docker container logs copy
 	
 
 
