@@ -156,3 +156,26 @@ ENV instruction :
 	docker container logs env
 
 	
+VOLUME INSTRUCTION : 
+- membuat volume secara otomatis apabila membuat docker container
+- contoh : 
+	docker build -t whitecat20/volume volume
+	docker image inspect whitecat20/volume
+	docker container create --name volume --env APP_PORT=8080 -p 8080:8080 whitecat20/volume
+	docker container start volume
+	docker container logs volume
+	--
+	FROM golang:1-18.alpine
+
+	ENV APP_PORT=8080
+	ENV APP_DATA=/logs
+
+	RUN mkdir ${APP_DATA}
+	RUN mkdir app
+	COPY main.go app
+
+	EXPOSE ${APP_PORT}
+	VOLUME ${APP_DATA}
+
+	CMD go run app/main.go
+
