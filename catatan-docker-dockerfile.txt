@@ -179,3 +179,16 @@ VOLUME INSTRUCTION :
 
 	CMD go run app/main.go
 
+WORKDIR INSTRUCTION : 
+- instruksi untuk menentukan direktori untuk menjalankan instruksi RUN, CMD, ENTRYPOINT, COPY, ADD
+- contoh : 
+	WORKDIR /app # working directorynya adalah /app
+	WORKDIR docker # working directorya adalah /app/docker
+	WORKDIR /home/app # working directorynya adalaha /home/app
+	-- 
+	docker build -t whitecat20/workdir workdir
+	docker image inspect whitecat20/workdir
+	docker container create --name workdir -p 8080:8080 whitecat20/workdir
+	docker container start workdir
+	docker container exec -i -t workdir /bin/sh
+	docker container logs workdir
