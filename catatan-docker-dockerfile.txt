@@ -192,3 +192,14 @@ WORKDIR INSTRUCTION :
 	docker container start workdir
 	docker container exec -i -t workdir /bin/sh
 	docker container logs workdir
+	
+USER INSTRUCTION : 
+- instruction untuk mengubah user atau user group dalam docker image
+- defaultnya menggunakan user root
+	--
+	docker build -t whitecat20/user user
+	docker container create --name user -p 8080:8080 whitecat20/user
+	docker container start user
+	docker container exec -i -t user /bin/sh
+
+- untuk cek nama user, bisa gunakan perintah : whoami
