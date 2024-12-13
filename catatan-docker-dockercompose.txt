@@ -24,3 +24,7 @@ Melihat Container :
 
 Menghentikan container : 
 - docker compose stop
+
+Menghapus container : 
+- menggunakan perintah : docker compose down
+- semua container, network, volume, yang digunakan oleh container tersebut akan dihapus
