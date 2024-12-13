@@ -227,3 +227,39 @@ ARGUMENT INSTRUCTION
 	docker container create --name arg -p 8080:8080 whitecat20/arg
 	docker container start arg
 	docker container exec -i -t arg /bin/sh
+
+HEALTHCHECK INSTRUCTION
+- check health dari container, apakah masih berjalan dengan baik atau tidak
+- format : 
+	HEALTCHECK [OPTIONS] CMD command
+	CMD : command yang digunakan untuk health check
+- OPTIONS : 
+	--interval=DURATION, default 30s // check tiap 30 detik
+	--timeout=DURATION, default 30s // timeoutnya 30 detik
+	--start-period=DURATION, default 0s // apakah perlu menunggu sebelum healthcheck?
+	--retries=N, default 3 // jika error, retry berapa kali?
+
+- contoh : 
+	FROM golang:1.18-alpine
+
+	RUN apk --no-cache add curl
+	RUN mkdir app
+
+	COPY main.go app
+
+	EXPOSE 8080
+
+	HEALTHCHECK --interval=5s --start-period=5s CMD curl -f http://localhost:8080/health
+
+	CMD go run app/main.go
+	--
+	docker build -t whitecat20/health health
+
+	docker container create --name health -p 8080:8080 whitecat20/health
+
+	docker container start health
+
+	docker container ls
+
+	docker container inspect health
+	
