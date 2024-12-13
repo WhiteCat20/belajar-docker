@@ -292,3 +292,7 @@ ENTRYPOINT INSTRUCTION
 	docker container create --name entrypoint -p 8080:8080 whitecat20/entrypoint
 
 	docker container start entrypoint
+	
+MULTISTAGE BUILD
+- untuk mereduce penggunaan memori pada base image yang itu2 aja.
+- membuat tahapan build
