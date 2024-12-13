@@ -296,3 +296,10 @@ ENTRYPOINT INSTRUCTION
 MULTISTAGE BUILD
 - untuk mereduce penggunaan memori pada base image yang itu2 aja.
 - membuat tahapan build
+
+
+Docker Hub Registry
+- setelah membuat image, biasanya di upload ke docker registry
+- docker registry populer : Docker Hub
+- buat access token, untuk password login
+- process login : docker login -u whitecat20
