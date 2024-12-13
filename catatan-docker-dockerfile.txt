@@ -201,5 +201,29 @@ USER INSTRUCTION :
 	docker container create --name user -p 8080:8080 whitecat20/user
 	docker container start user
 	docker container exec -i -t user /bin/sh
-
 - untuk cek nama user, bisa gunakan perintah : whoami
+
+ARGUMENT INSTRUCTION
+- variabel yang digunakan oleh penggunan untuk dikirim ketika melakukan proses docker build, contoh : 
+	--build-arg key=value
+- hanya digunakan pada saat proses build time, tidak digunakan ketika docker container berjalan	
+- mengakses ARG : ${variable_name}
+- contoh : 
+	FROM golang:1.18-alpine
+
+	ARG app=main
+
+	RUN mkdir app
+
+	COPY main.go app
+
+	RUN mv app/main.go app/${app}.go
+
+	EXPOSE 8080
+
+	CMD go run app/${app}.go
+	--
+	docker build -t whitecat20/arg arg --build-arg app=wc20
+	docker container create --name arg -p 8080:8080 whitecat20/arg
+	docker container start arg
+	docker container exec -i -t arg /bin/sh
