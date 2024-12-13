@@ -263,3 +263,32 @@ HEALTHCHECK INSTRUCTION
 
 	docker container inspect health
 	
+ENTRYPOINT INSTRUCTION
+- menentukan executable file yang akan dijalankan oleh container
+- erat kaitannya dengan instruksi CMD
+- format :
+	ENTRYPOINT executable param1 param2
+	
+	ENTRYPOINT ["go", "run"]
+	CMD ["/app/main.go"]
+	
+	sama saja seperti : CMD go run /app/main.go
+	--
+	FROM golang:1.18-alpine
+
+	RUN mkdir /app/
+	COPY main.go /app/
+
+	EXPOSE 8080
+
+	ENTRYPOINT ["go", "run"]
+
+	CMD ["/app/main.go"]
+	--
+	docker build -t whitecat20/entrypoint entrypoint
+
+	docker image inspect whitecat20/entrypoint
+
+	docker container create --name entrypoint -p 8080:8080 whitecat20/entrypoint
+
+	docker container start entrypoint
