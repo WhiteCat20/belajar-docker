@@ -1,0 +1,16 @@
+Docker compose : dapat menjalankan multiple docker container sekaligus
+- tidak perlu mengetikan perintah docker create secara manual, dan menjalankannya.
+- menggunakan file YAML (macam json) untuk melakukan konfigurasi beberapa docker container
+- Digunakan untuk membuat development environment
+- digunakan untuk automation testing
+- digunakan juga untuk deployment
+
+Membuat docker container : 
+- menggunakan keyword "services"
+contoh : 
+	services:
+	  nginx-example : 
+		container_name: nginx-example
+		image: nginx:latest
+- untuk membuat container dari konfigurasi file, menggunakan perintah
+	docker compose create
