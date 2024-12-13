@@ -28,3 +28,7 @@ Menghentikan container :
 Menghapus container : 
 - menggunakan perintah : docker compose down
 - semua container, network, volume, yang digunakan oleh container tersebut akan dihapus
+
+
+Project Name : 
+- secara default, nama project akan mengikuti nama folder dari file docker compose tsb.
