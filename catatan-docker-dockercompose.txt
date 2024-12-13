@@ -32,3 +32,7 @@ Menghapus container :
 
 Project Name : 
 - secara default, nama project akan mengikuti nama folder dari file docker compose tsb.
+- untuk cek project apa saja yang berjalan : docker compose ls
+
+Service : 
+- service = container, tiap docker compose bisa memuat banyak container dari image2
