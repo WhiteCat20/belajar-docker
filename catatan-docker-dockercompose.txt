@@ -21,3 +21,6 @@ Menjalankan Container :
 Melihat Container : 
 - menampilkan docker container yang berada di konfigurasi docker compose, selain compose tidak akan terlihat
 - perintahnya : docker compose ps
+
+Menghentikan container : 
+- docker compose stop
