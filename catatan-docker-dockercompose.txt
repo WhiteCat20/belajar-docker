@@ -14,7 +14,7 @@ contoh :
 		image: nginx:latest
 - untuk membuat container dari konfigurasi file, menggunakan perintah
 	docker compose create
-
+(sebelum dijalankan, jangan lupa create dulu!)
 Menjalankan Container : 
 - menggunakan perintah docker compose start
 
@@ -36,3 +36,14 @@ Project Name :
 
 Service : 
 - service = container, tiap docker compose bisa memuat banyak container dari image2
+
+Port : 
+- bisa mengekspos ports, menggunakan port forwarding
+- attribute ports berisi object port
+- short syntax : port host:container misal -> 8080:80, 8080 di host untuk di fwd ke port 80 di container
+- long syntax berisi : 
+	- target : port di di dalam container
+	- published : port yang digunakan di host
+	- protocol : protocol port (TCP/UDP)
+	- mode : host (untuk port di tiap node), ingress (untuk swarm mode) 
+
