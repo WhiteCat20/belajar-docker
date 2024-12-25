@@ -47,3 +47,32 @@ Port :
 	- protocol : protocol port (TCP/UDP)
 	- mode : host (untuk port di tiap node), ingress (untuk swarm mode) 
 
+- contoh =  
+	services:
+	  nginx-port1:
+		image: nginx:latest
+		container_name: nginx-port1
+		ports:
+		  - protocol : tcp
+			published : 8080
+			target: 80
+	  
+	  nginx-port2 : 
+		image: nginx:latest
+		container_name: nginx-port2
+		ports:
+		  - "8081:80"
+
+Environment : 
+- menambahkan env di container, dengan attribute environment
+- contoh = 
+	services : 
+	  mongodb-example :
+		image : mongo:latest
+		container_name: mongodb-example
+		ports : 
+		  - "27017:27017"
+		environment :
+		  - MONGO_INITDB_ROOT_USERNAME=root
+		  - MONGO_INITDB_ROOT_PASSWORD=root
+		  - MONGO_INITDB_DATABASE=admin
