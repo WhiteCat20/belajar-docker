@@ -117,4 +117,12 @@ contoh :
         target : "/data/db"
         read_only : false
 
-	
+Volume : 
+- docker compose juga bisa untuk membuat volume
+- menggunakan attribute volumes 
+- sebelum di create., minimal harus ada container
+- menggunakan volume dengan container menggunakan bind mount 
+- di short syntax, source diganti dengan nama volume-
+- di long syntax type diganti menjadi volume, source diganti dengan nama volume
+- menghapus docker compose tak akan menghapus volume, hanya container dan network saja
+- menghapus docker compose dr volume menggunakan : docker volume rm nama-volume
