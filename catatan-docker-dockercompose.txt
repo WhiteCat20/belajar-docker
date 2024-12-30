@@ -76,3 +76,45 @@ Environment :
 		  - MONGO_INITDB_ROOT_USERNAME=root
 		  - MONGO_INITDB_ROOT_PASSWORD=root
 		  - MONGO_INITDB_DATABASE=admin
+
+Bind mount : 
+- dapat menggunakan attribute volume di services
+- dapat menambahkan satu atau lebih bind mount jika mau
+- short syntax dan long syntax
+short syntax = source:target:mode, 
+- source adalah lokasi di host, 
+- target adalah lokasi di container
+- mode, mode bind mount, ro untuk readonly, rw read and write (default)
+- source bisa menggunakan relative path dengan titik .
+- contoh : 
+	services : 
+	  mongodb1 :
+		image : mongo:latest
+		container_name: mongodb1
+		ports : 
+		  - "27017:27017"
+		environment :
+		  - MONGO_INITDB_ROOT_USERNAME=root
+		  - MONGO_INITDB_ROOT_PASSWORD=root
+		  - MONGO_INITDB_DATABASE=admin
+		volumes : 
+		  - "./data-mongo1:/data/db"
+	
+long syntax = bisa dibuat dalam bentuk nested object volume dengan attribute
+contoh : 
+  mongodb2 :
+    image : mongo:latest
+    container_name: mongodb2
+    ports : 
+      - "27018:27017"
+    environment :
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=admin
+    volumes : 
+      - type: bind
+        source : "./data-mongo2"
+        target : "/data/db"
+        read_only : false
+
+	
