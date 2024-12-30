@@ -126,3 +126,26 @@ Volume :
 - di long syntax type diganti menjadi volume, source diganti dengan nama volume
 - menghapus docker compose tak akan menghapus volume, hanya container dan network saja
 - menghapus docker compose dr volume menggunakan : docker volume rm nama-volume
+
+Network : 
+- ketika menjalankan docker compose, secara default dihubungkan dalam sebuah network
+- tidak perlu membuat network secara manual 
+
+membuat network : 
+- contoh : 
+services : 
+  mongodb-example :
+    image : mongo:latest
+    container_name: mongodb-example
+    ports : 
+      - "27017:27017"
+    environment :
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=admin
+    networks : 
+      - network_example
+networks:
+  network_example : 
+    name : network_example
+    driver : bridge
