@@ -149,3 +149,33 @@ networks:
   network_example : 
     name : network_example
     driver : bridge
+	
+Depends On : 
+- container akan berjalan jika container didalam depends on sudah berjalan, contoh : 
+services : 
+  mongodb-example :
+    image : mongo:latest
+    container_name: mongodb-example
+    ports : 
+      - "27017:27017"
+    environment :
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=admin
+  
+  mongodb-example-express :
+    image : mongo-express:latest
+    container_name: mongodb-example-express
+    ports :
+      - "8081:8081"
+    environment :
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=admin
+    depends_on : 
+      - mongodb-example
+
+Restart : 
+- jika container mati, secara manual tidak akan menjalankan container lagi
+- untuk memaksa container restart, bisa gunakan attribute restart
+- value untuk attribute restart : no, always, on-failure, unless-stopped

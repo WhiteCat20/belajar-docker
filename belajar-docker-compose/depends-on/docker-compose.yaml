@@ -14,6 +14,7 @@ services :
   mongodb-example-express :
     image : mongo-express:latest
     container_name: mongodb-example-express
+    restart : always
     ports :
       - "8081:8081"
     environment :
