@@ -179,3 +179,12 @@ Restart :
 - jika container mati, secara manual tidak akan menjalankan container lagi
 - untuk memaksa container restart, bisa gunakan attribute restart
 - value untuk attribute restart : no, always, on-failure, unless-stopped
+- untuk cek log event yang terjadi pada sebuah container, bisa gunakan perintah : 
+	docker events --filter 'container=nama-container'
+
+Resource Limit : 
+- docker compose dapat mengatur resource limit untuk cpu dan memory dr tiap container
+- menggunakan attribute deploy, dan didalamnya menggunakan attribute resource
+- limit and reservations.
+reservation : resource yang dijamin bisa digunakan oleh container
+limit : limit maksimal resource yang diberikan ke container 
