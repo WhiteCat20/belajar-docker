@@ -188,3 +188,32 @@ Resource Limit :
 - limit and reservations.
 reservation : resource yang dijamin bisa digunakan oleh container
 limit : limit maksimal resource yang diberikan ke container 
+
+Dockerfile : 
+- docker compose bisa digunakan untuk membuat containe dari dockerfile
+- agar tidak buat manual, bisa dilakukan otomates oleh docker compose
+contoh :
+version: '3.9'
+
+services:
+  app: 
+    container_name: app
+    build: 
+      context: "./app"
+      dockerfile: Dockerfile
+    image: "app-golang:1.0.0"
+    environment:
+      - "APP_PORT=8080"
+    ports:
+      - "8080:8080"
+
+isi dockerfile : 
+FROM golang:1.18-alpine
+ENV APP_PORT=8080
+RUN mkdir app
+
+COPY main.go app
+
+EXPOSE ${APP_PORT}
+
+CMD go run app/main.go
